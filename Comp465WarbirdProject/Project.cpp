@@ -48,7 +48,7 @@ int main(int argc, char* argv[]) {
 	glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH);
 	glutInitWindowSize(800, 600);
 	// Uncomment the following line to force OpenGL & GLSL 3.3
-	// glutInitContextVersion(3, 3);
+	glutInitContextVersion(3, 3);
 	glutInitContextProfile(GLUT_CORE_PROFILE);
 	glutCreateWindow("Starter source file for 465L");
 	// initialize and verify glew
