@@ -8,7 +8,16 @@ Mike Barnes 7/28/2016
 
 // declare variables
 GLfloat aspectRatio;
-int timerDelay = 40; // 40 millisecond delay approximates 35 fps
+
+// Time variables
+int const numberOfTimeQuantums = 4;	// Four fps options
+// 40 millison = 35fps, 
+int timerDelay[numberOfTimeQuantums] = { 40, 100, 250, 500 };
+int timeQuantum = 0;
+
+double currentTime, lastTime, timeInterval;
+// Interval or Idle Timer
+bool idleTimeFlag = false;
 
 // define functions
 
@@ -38,9 +47,24 @@ void update(void) {
 	}
 
 // Estimate FPS, use for fixed interval timer driven animation
+/* Method that sets the amount of time passes between updates
+*/
 void intervalTimer(int i) {
-	glutTimerFunc(timerDelay, intervalTimer, 1); // reset timerDelay
-	update();  // fixed interval timer
+	glutTimerFunc(timerDelay[timeQuantum], intervalTimer, 1);
+	if (!idleTimeFlag)
+		update();	// fix interval timer
+}
+
+/* Method that recieves input from the keyboard if the user enters a ANCII Character.
+*/
+void keyboard(unsigned char key, int x, int y) {
+
+	switch (key) {
+	case 033: case 'q': case 'Q':
+		// Exit program when user presses Q
+		exit(EXIT_SUCCESS);
+		break;
+	}
 }
 
 int main(int argc, char* argv[]) {
@@ -50,7 +74,7 @@ int main(int argc, char* argv[]) {
 	// Uncomment the following line to force OpenGL & GLSL 3.3
 	glutInitContextVersion(3, 3);
 	glutInitContextProfile(GLUT_CORE_PROFILE);
-	glutCreateWindow("Starter source file for 465L");
+	glutCreateWindow("Comp 465 Warbird Simulation");
 	// initialize and verify glew
 	glewExperimental = GL_TRUE;  // needed my home system 
 	GLenum err = glewInit();
@@ -67,7 +91,14 @@ int main(int argc, char* argv[]) {
 	// set glut callback functions here
 	glutDisplayFunc(display);
 	glutReshapeFunc(reshape);
-	glutTimerFunc(timerDelay, intervalTimer, 1);  // keep the window up
+	glutKeyboardFunc(keyboard);
+	//Start with intervalTimer
+	glutIdleFunc(NULL);
+	//Keep the window active
+	glutTimerFunc(timerDelay[timeQuantum], intervalTimer, 1);
+	glutIdleFunc(display);
+
+
 	glutMainLoop();
 	printf("done\n");
 	return 0;
