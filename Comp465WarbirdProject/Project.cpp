@@ -140,7 +140,7 @@ void init(void) {
 
 	// set render state values
 	glEnable(GL_DEPTH_TEST);
-	glClearColor(0.7f, 0.7f, 0.7f, 1.0f);
+	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
 	// create shape
 	for (int i = 0; i < nShapes; i++) {
