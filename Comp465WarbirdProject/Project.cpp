@@ -50,8 +50,8 @@ Mike Barnes
 const int nShapes = 5;
 Shape3D * shape[nShapes];
 // Model for shapes
-char * modelFile = "cube2.tri"; // name of tri model file
-const GLuint nVertices = 12 * 3;  // 3 vertices per line (surface) of model file  
+char * modelFile = "ruber_sphere.tri"; // name of tri model file
+const GLuint nVertices = 264 * 3;  // 3 vertices per line (surface) of model file  
 float boundingRadius;  // modelFile's bounding radius
 int Index =  0;  // global variable indexing into VBO arrays
 
@@ -129,14 +129,14 @@ void init (void) {
   MVP = glGetUniformLocation(shaderProgram, "ModelViewProjection");
   
 // initially use a front view
-  eye = glm::vec3(0.0f, 0.0f, 2000.0f);   // eye is 1000 "out of screen" from origin
+  eye = glm::vec3(0.0f, 0.0f, 400.0f);   // eye is 1000 "out of screen" from origin ( CAMERA DISTANCE)
   at  = glm::vec3(0.0f, 0.0f,    0.0f);   // looking at origin
   up  = glm::vec3(0.0f, 1.0f,    0.0f);   // camera'a up vector
   viewMatrix = glm::lookAt(eye, at, up);
   
   // set render state values
   glEnable(GL_DEPTH_TEST);
-  glClearColor(0.7f, 0.7f, 0.7f, 1.0f);
+  glClearColor(0.9f, 0.9f, 0.9f, 1.0f);
 
   // create shape
   for(int i = 0; i < nShapes; i++) shape[i] = new Shape3D(i);
@@ -195,7 +195,7 @@ void keyboard (unsigned char key, int x, int y) {
   switch(key) {
     case 033 : case 'q' :  case 'Q' : exit(EXIT_SUCCESS); break;
     case 'f' : case 'F' :  // front view
-        eye = glm::vec3(0.0f, 0.0f, 2000.0f);   // eye is 2000 "out of screen" from origin
+        eye = glm::vec3(0.0f, 0.0f, 5000.0f);   // eye is 2000 "out of screen" from origin
         at  = glm::vec3(0.0f, 0.0f,    0.0f);   // looking at origin
         up  = glm::vec3(0.0f, 1.0f,    0.0f);   // camera'a up vector
         strcpy(viewStr, " front view"); break;
