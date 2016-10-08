@@ -110,7 +110,7 @@ GLuint loadShaders(const GLchar* vShaderFile, const GLchar* fShaderFile) {
     checkProgramStatus(shaderProgram, status, "linking");
 
     // validate program -- doesn't work for Macs
-# ifndef __MAC__
+# ifndef __Mac__
     glValidateProgram(shaderProgram);
     glGetProgramiv(shaderProgram, GL_VALIDATE_STATUS, &status);
     checkProgramStatus(shaderProgram, status, "validation");

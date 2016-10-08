@@ -22,39 +22,46 @@ private :
   float radians; 
   bool orbital;
 
+  Object3D * parentNode;
+
 public:
+
+    Object3D(int number) {
+
+        id = number;  // for debugging
+        setupFirst(number, false); 
+
+    }
 
     Object3D(int number, bool isOrbital) {
 
         id = number;  // for debugging
+        setupFirst(number, isOrbital);
 
-        // Scale =======================================
-        //==============================================
+    }
 
-        scaleMatrix = glm::scale(glm::mat4(), glm::vec3(20, 20, 20));
+    void setupFirst(int number, bool isOrbital) {
 
-        // Rotation ====================================
-        //==============================================
-
+        setScale(1.0f);
         rotationMatrix = glm::mat4();  // no initial orientation
-        //set cube's  rotation axis and rotation radians
         rotationAxis = glm::vec3(0,  1,  0);
-        // rotate between 0.1 and 2.0 degrees
-        radians = glm::radians(0.8f);
-
-		staticRot = glm::rotate(glm::mat4(), PI / 2.0f , glm::vec3(0, 1, 0));
-        // Translation =================================
-        //==============================================
-
-        translationMatrix = glm::translate(glm::mat4(), glm::vec3(0, 0, 0));
-
-        // determine rotation type
+        setRotateBy(0.0f);
+        setPosition(0, 0, 0);
+        setStaticRotationOffset(PI);
         orbital = isOrbital;
 
     }
-    
-    void setScale(float scaleSize) {
-        scaleMatrix = glm::scale(glm::mat4(), glm::vec3(scaleSize,scaleSize,scaleSize));
+
+    void setRotationAxis(float x, float y, float z) {
+        rotationAxis = glm::vec3(x, y, z);
+    }
+
+    void setStaticRotationOffset(float rads) {
+        staticRot = glm::rotate(glm::mat4(), rads, glm::vec3(0, 1, 0));
+    }
+
+    void setScale(float s) {
+        scaleMatrix = glm::scale(glm::mat4(), glm::vec3(s, s, s));
     }
 
     void setRotateBy(float rads) {
@@ -72,16 +79,100 @@ public:
     glm::mat4 getModelMatrix() {
 		
         if (orbital) { // orbital rotation
-            return(rotationMatrix * translationMatrix * staticRot * scaleMatrix);
+
+            if (parentNode == NULL) {
+                return(rotationMatrix * translationMatrix * staticRot * scaleMatrix);
+            } else {
+
+                glm::mat4 prntLocRot = parentNode->getLocRot();
+                return(prntLocRot * rotationMatrix * translationMatrix * staticRot * scaleMatrix);
+            }
         } else { // center rotation
             return(translationMatrix * rotationMatrix * staticRot * scaleMatrix);
         }
 
     }
 
+    glm::mat4 getLocRot() {
+        return rotationMatrix * translationMatrix;
+    }
+
     void update() {
       rotationMatrix = glm::rotate(rotationMatrix, radians, rotationAxis);
-      //translationMatrix = glm::translate(translationMatrix, translation);
-    }  
+	  // float radsNew = radians * 500.0f;
+	  // float doubledRads = glm::radians(radsNew);
+	  // staticRot = glm::rotate(staticRot, doubledRads, rotationAxis);
+
+    }
+
+    void setupRuber(float boundingRadius) {
+
+        orbital = false;
+        setPosition(0, 0, 0);
+        setRotateBy(2);
+        setScale(2000.0f / boundingRadius);
+    }
+
+    void setupUnum(float boundingRadius) {
+
+        orbital = true;
+        setPosition(4000, 0, 0);
+        setRotateBy(2);
+        setStaticRotationOffset(0.0f);
+        setScale(200.0f / boundingRadius);
+    }
+
+    void setupDuo(float boundingRadius) {
+
+        orbital = true;
+        setPosition(9000, 0, 0);
+        setRotateBy(4);
+        setStaticRotationOffset(0.0f);
+        setScale(400.0f / boundingRadius);
+    }
+
+    void setupPrimus(float boundingRadius, Object3D * parent) {
+
+        orbital = true;
+        setPosition(900, 0, 0);
+        setRotateBy(20);
+        setStaticRotationOffset(0.0f);
+        setRotationAxis(0.0f, 1.0f, 0.0f);
+        setScale(100.0f / boundingRadius);
+        parentNode = parent;
+
+    }
+
+    void setupSecundus(float boundingRadius, Object3D * parent) {
+
+        orbital = true;
+        setPosition(1750, 0, 0);
+        setRotateBy(15);
+        setStaticRotationOffset(0.0f);
+        setRotationAxis(0.0f, 1.0f, 0.0f);
+        setScale(150.0f / boundingRadius);
+        parentNode = parent;
+
+    }
+
+    void setupWarbird(float boundingRadius) {
+
+        orbital = true;
+        setPosition(5000, 1000, 5000);
+        setRotateBy(0);
+        setStaticRotationOffset(0.0f);
+        setScale(100.0f / boundingRadius);
+
+    }
+
+    void setupStaticMissile(float boundingRadius) {
+
+        orbital = true;
+        setPosition(4900, 1000, 4850);
+        setRotateBy(0);
+        setStaticRotationOffset(0.0f);
+        setScale(25.0f / boundingRadius);
+
+    }
 
 };  
