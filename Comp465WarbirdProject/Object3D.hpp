@@ -52,6 +52,10 @@ public:
         orbital = isOrbital;
 
     }
+    
+    void setScale(float scaleSize) {
+        scaleMatrix = glm::scale(glm::mat4(), glm::vec3(scaleSize,scaleSize,scaleSize));
+    }
 
     void setRotateBy(float rads) {
         radians = glm::radians(rads);
