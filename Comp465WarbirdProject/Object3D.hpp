@@ -150,6 +150,7 @@ public:
         setRotateBy(15);
         setStaticRotationOffset(0.0f);
         setRotationAxis(0.0f, 1.0f, 0.0f);
+		//setRotationAxis(0.0f, 0.0f, 1.0f);
         setScale(150.0f / boundingRadius);
         parentNode = parent;
 

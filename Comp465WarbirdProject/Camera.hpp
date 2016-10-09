@@ -96,23 +96,7 @@ public:
             case 'd': case 'D':
                 setDuoCam();
                 break;
-			//case 'v': case 'V':
-			//	printf("pressed v\n");
-			//	printf("%d\n", camCount);
-			//	//camCount++;
-			//	//if (camCount % numCams == 0)
-			//	//	setToFront();
-			//	//if (camCount % numCams == 1)
-			//	//	setToTop();
-			//	//if (camCount % numCams == 2)
-			//	//	setUnumCam();
-			//	//if (camCount % numCams == 3)
-			//	//{
-			//	//	setDuoCam();
-			//	//	
-			//	//	camCount = 0;
-			//	//}
-			//	break;
+
         }
 
     }

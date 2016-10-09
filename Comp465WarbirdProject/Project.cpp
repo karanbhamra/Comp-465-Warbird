@@ -21,6 +21,10 @@ glm::mat4 identity(1.0f);
 int timerDelay = 40, frameCount = 0;
 double currentTime, lastTime, timeInterval;
 
+// Cam
+int camCount = 0;
+int numCams = 4;
+
 
 void init(void) {
 
@@ -95,19 +99,38 @@ void update(int i) {
 }
 
 
-
+char views[4] = {'f', 't', 'u', 'd'};
 
 void keyboard(unsigned char key, int x, int y) {
 
 	if ((key == 033) || (key == 'q') || (key == 'Q')) {
-		exit(EXIT_SUCCESS);
-	}
-	else {
 
-		if (key == 'v' || key == 'V')
-		{
-			printf("v pressed\n");
+		exit(EXIT_SUCCESS);
+
+	} else if (key == 'v' || key == 'V' || key == 'x' || key == 'X' ) {
+
+		printf("v pressed\n");
+		printf("%d camCount", camCount);
+
+		if (key == 'v' || key == 'V') {
+			camCount++;
+			if (camCount > 3) {
+				camCount = 0;
+			}
+		} else {
+			camCount--;
+			if (camCount < 0) {
+				camCount = 3;
+			}
 		}
+		
+		int viewIndex = camCount % numCams;
+		char selectedView = views[viewIndex];
+		models->handleKeyPress(selectedView);	//camera views
+		cam->handleKeyPress(selectedView);
+		bar->handleKeyPress(selectedView);
+
+	} else {
 
 		models->handleKeyPress(key);
 		cam->handleKeyPress(key);
