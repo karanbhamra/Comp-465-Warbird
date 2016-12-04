@@ -65,7 +65,7 @@ public:
     }
 
     void setRotateBy(float rads) {
-        radians = glm::radians(rads);
+        radians = rads;
     }
 
     void setRotation(float x, float y, float z, float w) {
@@ -109,7 +109,7 @@ public:
 
         orbital = false;
         setPosition(0, 0, 0);
-        setRotateBy(2);
+        setRotateBy(0);
         setScale(2000.0f / boundingRadius);
     }
 
@@ -117,7 +117,7 @@ public:
 
         orbital = true;
         setPosition(4000, 0, 0);
-        setRotateBy(2);
+        setRotateBy(.004);
         setStaticRotationOffset(0.0f);
         setScale(200.0f / boundingRadius);
     }
@@ -126,7 +126,7 @@ public:
 
         orbital = true;
         setPosition(9000, 0, 0);
-        setRotateBy(4);
+        setRotateBy(.002);
         setStaticRotationOffset(0.0f);
         setScale(400.0f / boundingRadius);
     }
@@ -135,7 +135,7 @@ public:
 
         orbital = true;
         setPosition(900, 0, 0);
-        setRotateBy(20);
+        setRotateBy(.004);
         setStaticRotationOffset(0.0f);
         setRotationAxis(0.0f, 1.0f, 0.0f);
         setScale(100.0f / boundingRadius);
@@ -147,7 +147,7 @@ public:
 
         orbital = true;
         setPosition(1750, 0, 0);
-        setRotateBy(15);
+        setRotateBy(.004);
         setStaticRotationOffset(0.0f);
         setRotationAxis(0.0f, 1.0f, 0.0f);
 		//setRotationAxis(0.0f, 0.0f, 1.0f);

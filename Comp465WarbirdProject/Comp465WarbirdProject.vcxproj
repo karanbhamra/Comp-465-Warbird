@@ -116,6 +116,12 @@
   <ItemGroup>
     <ClCompile Include="Project.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Camera.hpp" />
+    <ClInclude Include="Models.hpp" />
+    <ClInclude Include="Object3D.hpp" />
+    <ClInclude Include="TopBar.hpp" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
