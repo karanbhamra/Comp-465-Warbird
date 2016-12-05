@@ -1,7 +1,7 @@
 ﻿  Project.cpp
   GLM: GLM_MESSAGES is deprecated, use GLM_FORCE_MESSAGES instead
   GLM: Windows platform detected
-  GLM: version 0.9.8.0
+  GLM: version 0.9.8.1
   GLM: Visual C++ compiler detected
   GLM: 32 bits model
   GLM: Platform independent code
@@ -16,5 +16,9 @@
   GLM: GLM_GTC_matrix_transform extension included
   GLM: GLM_GTC_quaternion extension included
   GLM: GLM_GTC_type_ptr extension included
-  Comp465WarbirdProject.vcxproj -> Z:\Dropbox\cs465\OpenGL\Comp465WarbirdProject\Debug\Comp465WarbirdProject.exe
-  Comp465WarbirdProject.vcxproj -> Z:\Dropbox\cs465\OpenGL\Comp465WarbirdProject\Debug\Comp465WarbirdProject.pdb (Partial PDB)
+c:\users\harout\documents\github\comp-465-warbird\comp465warbirdproject\object3d.hpp(120): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\harout\documents\github\comp-465-warbird\comp465warbirdproject\object3d.hpp(129): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\harout\documents\github\comp-465-warbird\comp465warbirdproject\object3d.hpp(138): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\harout\documents\github\comp-465-warbird\comp465warbirdproject\object3d.hpp(150): warning C4305: 'argument': truncation from 'double' to 'float'
+  Comp465WarbirdProject.vcxproj -> C:\Users\Harout\Documents\GitHub\Comp-465-Warbird\Comp465WarbirdProject\Debug\Comp465WarbirdProject.exe
+  Comp465WarbirdProject.vcxproj -> C:\Users\Harout\Documents\GitHub\Comp-465-Warbird\Comp465WarbirdProject\Debug\Comp465WarbirdProject.pdb (Partial PDB)

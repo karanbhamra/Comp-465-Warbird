@@ -9,6 +9,7 @@
 # include "Camera.hpp"
 # include "Models.hpp"
 # include "TopBar.hpp"
+#include "Missile.hpp"
 
 Camera * cam;
 Models * models;
@@ -26,11 +27,13 @@ int camCount = 0;
 int numCams = 4;
 
 
+
 void init(void) {
 
 	cam = new Camera();
 	models = new Models();
 	bar = new TopBar();
+
 	models->setupModels(cam->shaderProgram);
 
 	cam->setToFront();
